@@ -11,23 +11,23 @@ pipeline {
         }
         stage('docker login') {
             steps{
-                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 890742578441.dkr.ecr.us-east-1.amazonaws.com'
+                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 381492114267.dkr.ecr.us-east-1.amazonaws.com'
             }
         }
         stage('docker Image build') {
             steps{
-                sh 'docker build -t qa-little-fashion:test-$BUILD_ID .'
+                sh 'docker build -t recipe-app-images .'
             }
         }
         stage('docker tag') {
             steps{
-                sh 'docker tag qa-little-fashion:test-$BUILD_ID 890742578441.dkr.ecr.us-east-1.amazonaws.com/qa-little-fashion:test-$BUILD_ID'
+                sh 'docker tag recipe-app-images:latest 381492114267.dkr.ecr.us-east-1.amazonaws.com/recipe-app-images:latest'
             }
         }
 
         stage('push image') {
             steps{
-                sh 'docker push 890742578441.dkr.ecr.us-east-1.amazonaws.com/qa-little-fashion:test-$BUILD_ID'
+                sh 'docker push 381492114267.dkr.ecr.us-east-1.amazonaws.com/recipe-app-images:latest'
                 
             }
         }
