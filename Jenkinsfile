@@ -16,18 +16,18 @@ pipeline {
         }
         stage('docker Image build') {
             steps{
-                sh 'docker build -t recipe-app-images .'
+                sh 'docker build -t gigi_app .'
             }
         }
         stage('docker tag') {
             steps{
-                sh 'docker tag recipe-app-images:latest 381492114267.dkr.ecr.us-east-1.amazonaws.com/recipe-app-images:latest'
+                sh 'docker tag gigi_app:latest 381492114267.dkr.ecr.us-east-1.amazonaws.com/gigi_app:latest'
             }
         }
 
         stage('push image') {
             steps{
-                sh 'docker push 381492114267.dkr.ecr.us-east-1.amazonaws.com/recipe-app-images:latest'
+                sh 'docker push 381492114267.dkr.ecr.us-east-1.amazonaws.com/gigi_app:latest'
                 
             }
         }
